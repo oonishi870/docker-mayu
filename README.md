@@ -28,3 +28,27 @@ docker stop mayu-dvorak
 
 ```
 
+
+# devel
+
+```bash
+docker build --target builder -t my/mayu-devel .
+
+```
+
+
+```bash
+
+docker run --rm -it                    \
+    --name mayu-devel                  \
+    --privileged                       \
+    -v ./mayu.mayu:/mayu/.mayu         \
+    -v ./dvorak.mayu:/mayu/dvorak.mayu \
+    my/mayu-devel bash
+
+```
+
+```bash
+docker stop mayu-devel
+
+```
