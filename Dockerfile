@@ -32,5 +32,5 @@ RUN mkdir /mayu
 WORKDIR /mayu
 
 COPY --from=build /source/mayu/*.mayu /mayu/
-ENV HOME=/mayu/
+ENV HOME=/mayu
 CMD ["/bin/mayu"]
