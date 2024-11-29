@@ -44,11 +44,26 @@ docker run --rm -it                    \
     --privileged                       \
     -v ./mayu.mayu:/mayu/.mayu         \
     -v ./dvorak.mayu:/mayu/dvorak.mayu \
+    -v ~/git/mayu:/source/mayu         \
     my/mayu-devel bash
 
 ```
 
 ```bash
 docker stop mayu-devel
+
+```
+
+# push
+
+```bash
+docker build -t okimatsuraa/mayu .
+
+```
+
+```bash
+docker login
+
+docker push okimatsuraa/mayu
 
 ```

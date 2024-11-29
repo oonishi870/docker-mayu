@@ -13,7 +13,8 @@ WORKDIR /source
 RUN chmod 6777 /source
 RUN useradd mayu
 USER mayu
-#RUN git clone https://github.com/kenhys/mayu.git
+#RUN git clone ht
+tps://github.com/kenhys/mayu.git
 RUN git clone https://github.com/oonishi870/mayu.git
 WORKDIR /source/mayu
 RUN git fetch --all
@@ -31,14 +32,14 @@ RUN cat <<EOF > /mayu/.mayu
 include "default.mayu"
 EOF
 
-ENV HOME=/mayu/
+ENV HOME=/mayu
 
 USER root
 
 FROM ubuntu:20.04
 
-ENV TZ=Asia/Tokyo
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+# ENV TZ=Asia/Tokyo
+# RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN apt -y update
 RUN apt install -y libboost-regex1.71.0 libusb-1.0-0
@@ -48,6 +49,6 @@ COPY --from=builder /source/mayu/mayu /bin/mayu
 RUN mkdir /mayu
 WORKDIR /mayu
 
-COPY --from=builder /source/mayu/*.mayu /mayu/
-ENV HOME=/mayu/
+COPY --from=builder /source/mayu/*.mayu /mayu
+ENV HOME=/mayu
 CMD ["/bin/mayu"]
